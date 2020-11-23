@@ -1,13 +1,232 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #F5F5F5;
+  font-size: 16px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header {
+  color: #ead7d7;
+  font-size: 6rem;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+#input-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#todo-box {
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0, 0.1), 0px 10px 30px -10px rgba(0, 0, 0, 0.2);
+  color: #4d4d4d;
+}
+
+@media (min-width: 500px) {
+  #todo-box {
+    width: 500px;
+  }
+}
+
+#input-bar {
+  font-size: 1.5rem;
+  color: #4d4d4d;
+  padding: 16px;
+  padding-left: 60px;
+  border: none;
+  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+
+ul {
+  margin: 0px;
+}
+
+#todo-list-box {
+  position: relative;
+}
+
+.toggle-all {
+	text-align: center;
+	border: none;
+	opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.toggle-all + label {
+  font-size: 0;
+  text-align: center;
+	position: absolute;
+	top: -50px;
+  left: 5px;
+  padding: 5px 20px;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.toggle-all + label::before {
+	content: '❯';
+  font-size: 1.5rem;
+  padding: 5px 0px;
+  color: #e6e6e6;
+}
+
+.toggle-all:checked + label::before {
+	color: #737373;
+}
+
+#todo-list {
+  font-size: 1.5rem;
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+#todo-list > li {
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid #ededed;
+  position: relative;
+}
+
+#todo-list > li > .todo-toggle {
+  position: absolute;
+  left: -9999px;
+}
+
+#todo-label, #todo-edit {
+  min-width: 0px;
+  flex-grow: 1;
+  word-break: break-all;
+  margin-left: 50px;
+  padding: 15px 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  text-decoration-thickness: from-font;
+  color: rgba(77, 77, 77, 0.5);
+  transition: color .2s ease-in;
+}
+
+#todo-edit {
+  font-family: inherit;
+  font-size: 100%;
+  color: inherit;
+  border: 1px solid #999;
+  box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.todo-toggle-label {
+  position: relative;
+}
+
+.todo-toggle-label::before {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  content: "";
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 0.5px solid #ededed;
+  border-radius: 30px;
+}
+
+.todo-toggle:checked + .todo-toggle-label::before {
+  content: '\2713\0020';
+  text-align: center;
+  line-height: 28px;
+  color: lightgreen;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: inherit;
+  background-color: white;
+  color: inherit
+}
+
+#delete {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+}
+
+#delete::after {
+  content: "×";
+  font-size: 2rem;
+}
+
+#todo-list li:hover #delete {
+  display: block;
+  color: rgba(213, 140, 140, 0.7);
+}
+
+#todo-list li #delete:hover {
+  transition: color .2s ease-in;
+  color: rgba(213, 140, 140);
+}
+
+footer {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  color: #4d4d4d;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #ededed;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2), 
+  0px 8px 0 -3px #f6f6f6, 
+  0 9px 1px -3px rgba(0, 0, 0, 0.2), 
+  0 16px 0 -6px #f6f6f6, 
+  0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  margin: 0px;
+  padding: 15px 15px;
+  min-width: 65px;
+}
+
+footer p:hover {
+  cursor: default;
+}
+
+footer .filters {
+  margin-left: 10%;
+  min-width: 145px;
+}
+
+footer .filters button {
+  padding: 2px 5px;
+  margin-right: 5px;
+}
+
+footer button:hover {
+  cursor: pointer;
+}
+
+footer button.selected {
+  border: 1px solid #ededed;
+}
+
+#clear-all {
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+#clear-all:hover {
+  text-decoration: underline;
 }
