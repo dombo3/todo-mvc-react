@@ -118,14 +118,14 @@ export default class TodoApp extends Component {
       };
     })
 
+    let activeItemCount = items.filter(item => !item.isCompleted).length
+    let completedItemCount = items.filter(item => item.isCompleted).length
+    
     if (this.state.filter === APP_ACTIVE) {
       items = items.filter(item => !item.isCompleted);
     } else if (this.state.filter === APP_COMPLETED) {
       items = items.filter(item => item.isCompleted)
     }
-
-    let activeItemCount = items.filter(item => !item.isCompleted).length
-    let completedItemCount = items.filter(item => item.isCompleted).length
 
     items = items.map((item) =>
       <Item

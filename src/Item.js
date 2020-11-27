@@ -72,7 +72,7 @@ export class Item extends Component {
           className={"todo-toggle"}
           id={"todo-toggle-" + item._id}
         />
-        <label className="todo-toggle-label" htmlFor={"todo-toggle-" + item._id}></label>
+        <label className="todo-toggle-label" htmlFor={"todo-toggle-" + item._id} data-testid={"done-button-" + item.name}></label>
         <label
           id="todo-label"
           className={item.isCompleted ? "completed" : undefined}
